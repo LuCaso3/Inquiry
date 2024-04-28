@@ -1,0 +1,23 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container my-3">
+    <table class="table">
+        <thead class="table-dark">
+        <tr>
+			<th>번호</th>
+            <th>제목</th>
+            <th>작성일시</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="inquiry, loop : ${inquiryList}">
+			<td th:text="${loop.count}"></td>
+			<td>
+			    <a th:href="@{|/inquiry/detail/${inquiry.id}|}" th:text="${inquiry.subject}"></a>
+			</td>
+			<td th:text="${#temporals.format(inquiry.createDate, 'yyyy-MM-dd HH:mm')}"></td>
+        </tr>
+    </tbody>
+</table>
+<a th:href="@{/inquiry/create}" class="btn btn-primary">설문 등록하기</a>
+</div>
+</html>

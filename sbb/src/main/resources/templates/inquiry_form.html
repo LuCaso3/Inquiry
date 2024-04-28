@@ -1,0 +1,79 @@
+<html layout:decorate="~{layout}">
+<div layout:fragment="content" class="container">
+    <h5 class="my-3 border-bottom pb-2">설문등록</h5>
+    <form th:action="@{/inquiry/create}" th:object="${inquiryForm}" method="post">
+		<div th:replace="~{form_errors :: formErrorsFragment}"></div>
+		<!-- single checkbox -->
+		<div>체크박스 테스트</div>
+		<div class="form-check">
+			<label for="open" class="form-check-label">체크</label>
+		    <input type="checkbox" th:field="*{open}" class="form-check-input">
+		</div>
+		<!-- multi checkbox -->
+		<div>
+		    <div>희망 서비스</div>
+		    <div class="form-check form-check-inline">
+		        <input type="checkbox" th:field="*{regions}" value="LANDING" class="form-check-input" id="regions1" name="regions">
+		        <label for="regions1"
+		               class="form-check-label">랜딩 페이지</label>
+		    </div>
+		    <div class="form-check form-check-inline">
+		        <input type="checkbox" th:field="*{regions}" value="COMPANY" class="form-check-input" id="regions2" name="regions">
+		        <label for="regions2"
+		               class="form-check-label">회사 페이지</label>
+		    </div>
+		    <div class="form-check form-check-inline">
+		        <input type="checkbox" th:field="*{regions}" value="MALL" class="form-check-input" id="regions3" name="regions">
+		        <label for="regions3"
+		               class="form-check-label">자사몰</label>
+		    </div>
+			<div class="form-check form-check-inline">
+			    <input type="checkbox" th:field="*{regions}" value="SERVICE" class="form-check-input" id="regions4" name="regions">
+			    <label for="regions4"
+			           class="form-check-label">서비스</label>
+			</div>
+			<div class="form-check form-check-inline">
+			    <input type="checkbox" th:field="*{regions}" value="ETC" class="form-check-input" id="regions5" name="regions">
+			    <label for="regions5"
+			           class="form-check-label">기타</label>
+			</div>
+			
+		</div>
+        <div class="mb-3">
+            <label for="subject" class="form-label">주요 고객은 어떤 사람들인가요?</label>
+            <input type="text" th:field="*{subject}" class="form-control" placeholder="ex)홈페이지 제작이 필요한 기업담당자, 홈페이지 리뉴얼이 위한 대표자 등">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">사이트 제작을 위한 모든 것을 자유롭게 서술해주세요.</label>
+            <textarea th:field="*{content}" class="form-control" rows="10" placeholder="ex)사이트 리뉴얼이 필요합니다. 디자인 개편, 전환추적에 대한 설정이 필요합니다 등"></textarea>
+        </div>
+		<!--DatePicker-->
+		<div class="mb-3">
+			<div>프로젝트 일정</div>
+			<input class="datepicker" type="text" th:field="*{Date}">
+			<script>
+			  $(function(){
+			    $('.datepicker').datepicker();
+					/*
+				   var a = $('.datepicker').datepicker("getDate"); 
+				   console.log(a) */
+				
+			  })
+			</script>
+		</div>	
+		<!--SelectBox-->
+		<div class="mb-3">
+			<div>프로젝트 예산 범위</div>
+			<select class="form-select" id="budget" th:field="*{budget}">
+				<option value="">==예산 범위를 선택해주세요.(단위 : 만원)==</option>
+			    <option value="SMALL" selected="selected">1000~3000 (회사소개)</option>
+			    <option value="NORMAL">3000~5000 (LMS, MVP 등 서비스)</option>
+			    <option value="LARGE">5000~10000 (상용 플랫폼 등)</option>
+				<option value="EXTRALARGE">10000~ (브랜드 웹 사이트, 상용 서비스 플랫폼 등)</option>
+			</select>
+		</div>	
+		
+        <input type="submit" value="저장하기" class="btn btn-primary my-2">
+    </form>
+</div>
+</html>
